@@ -1,0 +1,64 @@
+* {
+  text-decoration: none;
+  color: rgb(94, 94, 94);
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: all ease 0.3s;
+}
+
+.date {
+  color: rgb(94, 94, 94);
+  font-weight: 700;
+  position: absolute;
+  top: 88%;
+  left: 7%;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.author {
+  color: rgb(94, 94, 94);
+  font-weight: 700;
+  position: absolute;
+  right: 7%;
+  top: 88%;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.title {
+    width: 60%;
+    position: absolute;
+    top: 4%;
+    right: 3%;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.text {
+    width: 60%;
+    position: absolute;
+    top: 45%;
+    right: 3%;
+    font-size: 12px;
+}
+
+.img {
+    width: 29%;
+    height: 58%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 4%;
+    left: 2%;
+    border: 1px solid black;
+    border-radius: 10%;
+}
+
+.card:hover {
+  scale: 1.003;
+}

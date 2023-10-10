@@ -1,0 +1,59 @@
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all ease 0.3s;
+  }
+  
+  .date {
+    color: rgb(94, 94, 94);
+    font-weight: 700;
+    position: absolute;
+    top: 88%;
+    left: 3.5%;
+    font-style: italic;
+    font-size: 13px;
+  }
+  
+  .author {
+    color: rgb(94, 94, 94);
+    font-weight: 700;
+    position: absolute;
+    right: 3.5%;
+    top: 88%;
+    font-style: italic;
+    font-size: 13px;
+  }
+  
+  .title {
+      width: 70%;
+      position: absolute;
+      top: 4%;
+      right: 7%;
+      font-weight: 700;
+      font-size: 17px;
+  }
+  
+  .text {
+      width: 70%;
+      position: absolute;
+      top: 45%;
+      right: 7%;
+      font-size: 14px;
+  }
+  
+  .img {
+      width: 18%;
+      height: 70%;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 4%;
+      left: 1%;
+      border: 1px solid black;
+      border-radius: 10%;
+  }
+
+  .card:hover {
+    scale: 1.003;
+  }

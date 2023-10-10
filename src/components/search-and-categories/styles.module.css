@@ -1,0 +1,57 @@
+.nav {
+    height: 7%;
+    border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    width: 17%;
+    height: 60%;
+    margin-left: 25px;
+    border-radius: 20px;
+    outline: none;
+    padding: 0 20px;
+    border: 1px solid rgb(94, 94, 94);
+    text-align: center;
+}
+
+.input:hover, .input:focus {
+    border-color: red;
+}
+
+.input::placeholder {
+    text-align: center;
+}
+
+.input:focus::placeholder, .input:hover::placeholder{
+    opacity: 0;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-between;
+    width: 55%;
+    margin-right: 10%;
+}
+
+.category, .activeCategory {
+    border: 1px solid rgb(94, 94, 94);
+    width: 12%;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px 0;
+    border-radius: 45%;
+    transition: all ease 0.3s;
+}
+
+.activeCategory {
+    color: red;
+    border-color: red;
+}
+
+.category:hover{
+    color: red;
+    border-color: red;
+}
