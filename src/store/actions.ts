@@ -15,9 +15,10 @@ export const setNews = createAction("setNews", (news) => {
   };
 });
 
-export const loadNewsAction = createAsyncThunk(
+export const loadNewsAction = createAsyncThunk<void, {selectedCategory: string, page_size?: number, page_number?: number}>(
   "loadNews",
-  async (category: string, { dispatch }) => {
+  async (params, { dispatch }) => {
+    const {selectedCategory, page_size, page_number} = params;
     try {
       dispatch(changeNewsLoadingStatusAction(false));
       const {
@@ -25,7 +26,9 @@ export const loadNewsAction = createAsyncThunk(
       } = await axios.get(`${API_URL}search`, {
         params: {
           apiKey: API_KEY,
-          category: category === "all" ? null : category,
+          category: selectedCategory === "all" ? null : selectedCategory,
+          page_size,
+          page_number
         },
       });
 

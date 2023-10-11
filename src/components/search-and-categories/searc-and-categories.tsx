@@ -1,11 +1,11 @@
 import {  useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { loadNewsAction, selectCategory } from "../../store/actions";
+import { selectCategory } from "../../store/actions";
 import styles from "./styles.module.css";
 
 export default function SearchAndCategories(): JSX.Element {
   const categories = useAppSelector((state) => state.categories);
-  const selectedCategory = useAppSelector((state) => state.selectedCategory);
-  const className = (category: string) => category === selectedCategory ? styles.activeCategory : styles.category;
+  const params = useAppSelector((state) => state.paramsForFetch);
+  const className = (category: string) => category === params.selectedCategory ? styles.activeCategory : styles.category;
   const dispatch = useAppDispatch();
   
   return (
@@ -24,7 +24,6 @@ export default function SearchAndCategories(): JSX.Element {
               className={className(category)}
               onClick={() =>  {
                 dispatch(selectCategory(category));
-                dispatch(loadNewsAction(category));
               }}
             >
               {category}

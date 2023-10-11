@@ -6,22 +6,28 @@ export type initialStateType = {
     news: NewsType[];
     areNewsloaded: boolean;
     categories: string[];
-    selectedCategory: string;
-    pageNumber: number;
+    paramsForFetch: {
+        selectedCategory: string;
+        page_size: number;
+        page_number: number;
+    }    
 }
 
 const initialState: initialStateType = {
     news: [],
     areNewsloaded: false,
     categories: ['all', 'world', 'science', 'finance', 'sports', 'celebrity', 'culture'],
-    selectedCategory: 'all',
-    pageNumber: 1
+    paramsForFetch: {
+        selectedCategory: 'all',
+        page_size: 6,
+        page_number: 1
+    }
 }
 
 export const reducer = createReducer(initialState, (builder) => {
     builder   
         .addCase(selectCategory, (state, action) => {
-            state.selectedCategory = action.payload;
+            state.paramsForFetch.selectedCategory = action.payload;
         })
         .addCase(setNews, (state, action) => {
             state.news = action.payload;

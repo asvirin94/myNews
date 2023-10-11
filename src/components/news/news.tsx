@@ -2,9 +2,18 @@ import styles from "./styles.module.css";
 import Card from "../card/card";
 import HorizontalCard from "../horizontal-card/horizontal-card";
 import VerticalCard from "../vertical-card/vertical-card";
-import { useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { loadNewsAction } from "../../store/actions";
+import {useEffect} from 'react';
 
 export default function News(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const params = useAppSelector((state) => state.paramsForFetch);
+
+  useEffect(() => {
+    dispatch(loadNewsAction(params))
+  }, [params])
+
   const news = useAppSelector((state) => state.news);
 
   return (
