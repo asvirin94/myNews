@@ -7,13 +7,15 @@ export type initialStateType = {
     areNewsloaded: boolean;
     categories: string[];
     selectedCategory: string;
+    pageNumber: number;
 }
 
 const initialState: initialStateType = {
     news: [],
     areNewsloaded: false,
     categories: ['all', 'world', 'science', 'finance', 'sports', 'celebrity', 'culture'],
-    selectedCategory: 'all'
+    selectedCategory: 'all',
+    pageNumber: 1
 }
 
 export const reducer = createReducer(initialState, (builder) => {

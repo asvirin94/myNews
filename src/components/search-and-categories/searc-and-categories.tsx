@@ -1,5 +1,4 @@
 import {  useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { store } from "../../store";
 import { loadNewsAction, selectCategory } from "../../store/actions";
 import styles from "./styles.module.css";
 
@@ -9,8 +8,6 @@ export default function SearchAndCategories(): JSX.Element {
   const className = (category: string) => category === selectedCategory ? styles.activeCategory : styles.category;
   const dispatch = useAppDispatch();
   
-
-
   return (
     <nav className={styles.nav}>
       <input
@@ -18,6 +15,7 @@ export default function SearchAndCategories(): JSX.Element {
         type="text"
         placeholder="Search themes here"
       />
+      <div className={styles.paggination}></div>
       <div className={styles.categories}>
         {categories.map((category) => {
           return (
@@ -26,7 +24,7 @@ export default function SearchAndCategories(): JSX.Element {
               className={className(category)}
               onClick={() =>  {
                 dispatch(selectCategory(category));
-                store.dispatch(loadNewsAction());
+                dispatch(loadNewsAction(category));
               }}
             >
               {category}
