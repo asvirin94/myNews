@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { setNews, changeNewsLoadingStatusAction, selectCategory} from './actions';
+import { setNews, changeNewsLoadingStatusAction, selectCategory, setPageNumber, incPageNumber, decPageNumber, setKeywords} from './actions';
 import { NewsType } from "../types";
 
 export type initialStateType = {
@@ -10,6 +10,7 @@ export type initialStateType = {
         selectedCategory: string;
         page_size: number;
         page_number: number;
+        keywords: string
     }    
 }
 
@@ -20,7 +21,8 @@ const initialState: initialStateType = {
     paramsForFetch: {
         selectedCategory: 'all',
         page_size: 6,
-        page_number: 1
+        page_number: 1,
+        keywords: ''
     }
 }
 
@@ -34,5 +36,17 @@ export const reducer = createReducer(initialState, (builder) => {
         })
         .addCase(changeNewsLoadingStatusAction, (state, action) => {
             state.areNewsloaded = action.payload;
+        })
+        .addCase(setPageNumber, (state, action) => {
+            state.paramsForFetch.page_number = action.payload;
+        })
+        .addCase(incPageNumber, (state) => {
+            state.paramsForFetch.page_number = state.paramsForFetch.page_number + 1;
+        })
+        .addCase(decPageNumber, (state) => {
+            state.paramsForFetch.page_number = state.paramsForFetch.page_number - 1;
+        })
+        .addCase(setKeywords, (state, action) => {
+            state.paramsForFetch.keywords = action.payload;
         })
 })

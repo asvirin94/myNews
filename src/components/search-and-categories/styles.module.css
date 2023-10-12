@@ -7,9 +7,8 @@
 }
 
 .input {
-    width: 17%;
-    height: 60%;
-    margin-left: 1.3%;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     outline: none;
     padding: 0 20px;
@@ -61,4 +60,28 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
     height: 100%;
+}
+
+.paggination{
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pagButton {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.pagButton:disabled {
+    cursor: default
+}
+
+form {
+    width: 17%;
+    height: 60%;
+    margin-left: 1.3%;
 }
