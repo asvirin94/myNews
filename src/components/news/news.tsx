@@ -5,16 +5,22 @@ import VerticalCard from "../vertical-card/vertical-card";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { loadNewsAction } from "../../store/actions";
 import {useEffect} from 'react';
+import LoadingPage from "../../pages/loading-page/loading-page";
 
 export default function News(): JSX.Element {
   const dispatch = useAppDispatch();
   const params = useAppSelector((state) => state.paramsForFetch);
+  const isLoaded = useAppSelector((state) => state.areNewsloaded);
 
   useEffect(() => {
-    dispatch(loadNewsAction(params))
+    dispatch(loadNewsAction(params));
   }, [params])
 
   const news = useAppSelector((state) => state.news);
+
+  if(!isLoaded) {
+    return <LoadingPage />
+  }
 
   return (
     <section className={styles.news}>
