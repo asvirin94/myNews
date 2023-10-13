@@ -1,9 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { setNews, changeNewsLoadingStatusAction, selectCategory, setPageNumber, incPageNumber, decPageNumber, setKeywords} from './actions';
+import { setNews, changeNewsLoadingStatusAction, selectCategory, setPageNumber, incPageNumber, decPageNumber, setKeywords, goToLastPage, goToFirstPage, setFirstTimeLoaded} from './actions';
 import { NewsType } from "../types";
 
 export type initialStateType = {
     news: NewsType[];
+    isFirstTimeLoaded: boolean;
     areNewsloaded: boolean;
     categories: string[];
     pagesNumber: number;
@@ -17,6 +18,7 @@ export type initialStateType = {
 
 const initialState: initialStateType = {
     news: [],
+    isFirstTimeLoaded: false,
     areNewsloaded: false,
     pagesNumber: 30,
     categories: ['all', 'world', 'science', 'finance', 'sports', 'celebrity', 'culture'],
@@ -50,5 +52,14 @@ export const reducer = createReducer(initialState, (builder) => {
         })
         .addCase(setKeywords, (state, action) => {
             state.paramsForFetch.keywords = action.payload;
+        })
+        .addCase(goToLastPage, (state) => {
+            state.paramsForFetch.page_number = state.pagesNumber;
+        })
+        .addCase(goToFirstPage, (state) => {
+            state.paramsForFetch.page_number = 1;
+        })
+        .addCase(setFirstTimeLoaded, (state) => {
+            state.isFirstTimeLoaded = true;
         })
 })

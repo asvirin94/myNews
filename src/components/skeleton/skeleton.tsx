@@ -2,37 +2,28 @@ import styles from "./styles.module.css";
 import Card from "../card/card";
 import HorizontalCard from "../horizontal-card/horizontal-card";
 import VerticalCard from "../vertical-card/vertical-card";
-import { useAppSelector } from "../../hooks/hooks";
-import Skeleton from "../skeleton/skeleton";
 
-export default function News(): JSX.Element {
-  const isLoaded = useAppSelector((state) => state.areNewsloaded);
-
-  const news = useAppSelector((state) => state.news);
-
-  if(!isLoaded) {
-    return <Skeleton />
-  }
+export default function Skeleton(): JSX.Element {
 
   return (
     <section className={styles.news}>
       <div className={styles.topHorizontalCard}>
-        <HorizontalCard news={news[0]}/>
+        <HorizontalCard/>
       </div>
       <div className={styles.firstCard}>
-        <Card news={news[1]}/>
+        <Card/>
       </div>
       <div className={styles.secondCard}>
-        <Card news={news[2]}/>
+        <Card/>
       </div>
       <div className={styles.thirdCard}>
-        <Card news={news[3]}/>
+        <Card/>
       </div>
       <div className={styles.botHorizontalCard}>
-        <HorizontalCard news={news[4]}/>
+        <HorizontalCard/>
       </div>
       <div className={styles.verticalCard}>
-        <VerticalCard news={news[5]}/>
+        <VerticalCard/>
       </div>
     </section>
   );

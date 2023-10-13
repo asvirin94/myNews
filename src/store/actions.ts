@@ -36,6 +36,7 @@ export const loadNewsAction = createAsyncThunk<
 
     dispatch(setNews(news));
     dispatch(changeNewsLoadingStatusAction(true));
+    dispatch(setFirstTimeLoaded());
   } catch (error) {
     console.log(error);
   }
@@ -65,3 +66,9 @@ export const setKeywords = createAction("setKeywords", (word) => {
     payload: word,
   };
 });
+
+export const goToFirstPage = createAction('goToFirstPage');
+
+export const goToLastPage = createAction('goToLastPage');
+
+export const setFirstTimeLoaded = createAction('setFirstTimeLoaded');

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import {
   decPageNumber,
+  goToFirstPage,
+  goToLastPage,
   incPageNumber,
   selectCategory,
   setKeywords,
@@ -15,13 +17,17 @@ export default function SearchAndCategories(): JSX.Element {
   const categories = useAppSelector((state) => state.categories);
   const params = useAppSelector((state) => state.paramsForFetch);
   const pagesNumberCount = useAppSelector((state) => state.pagesNumber);
-  const pageNumbersArr = Array.from({length: pagesNumberCount}, (_, index) => index + 1);
-  const numbersForPag = params.page_number < 4
-    ? pageNumbersArr.slice(0, 5)
-    : params.page_number < 29 
+  const pageNumbersArr = Array.from(
+    { length: pagesNumberCount },
+    (_, index) => index + 1
+  );
+  const numbersForPag =
+    params.page_number < 4
+      ? pageNumbersArr.slice(0, 5)
+      : params.page_number < 29
       ? pageNumbersArr.slice(params.page_number - 3, params.page_number + 2)
       : pageNumbersArr.slice(25);
- 
+
   const className = (category: string) =>
     category === params.selectedCategory
       ? styles.activeCategory
@@ -35,10 +41,13 @@ export default function SearchAndCategories(): JSX.Element {
 
   return (
     <nav className={styles.nav}>
-      <form action="" onSubmit={(e) => {
-        e.preventDefault();
-        dispatch(setKeywords(inputValue))}
-      }>
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(setKeywords(inputValue));
+        }}
+      >
         <input
           className={styles.input}
           type="text"
@@ -51,6 +60,13 @@ export default function SearchAndCategories(): JSX.Element {
       <div className={styles.paggination}>
         <button
           className={styles.pagButton}
+          onClick={() => dispatch(goToFirstPage())}
+          disabled={1 === params.page_number}
+        >
+          {"<<"}
+        </button>
+        <button
+          className={styles.pagButton}
           onClick={() => dispatch(decPageNumber())}
           disabled={1 === params.page_number}
         >
@@ -59,7 +75,9 @@ export default function SearchAndCategories(): JSX.Element {
         {numbersForPag.map((number) => {
           return (
             <button
-              className={`${styles.pagButton} ${params.page_number === number ? styles.activePagButton : ''}`}
+              className={`${styles.pagButton} ${
+                params.page_number === number ? styles.activePagButton : ""
+              }`}
               onClick={() => dispatch(setPageNumber(number))}
               disabled={number === params.page_number}
             >
@@ -73,6 +91,13 @@ export default function SearchAndCategories(): JSX.Element {
           disabled={30 === params.page_number}
         >
           {">"}
+        </button>
+        <button
+          className={styles.pagButton}
+          onClick={() => dispatch(goToLastPage())}
+          disabled={30 === params.page_number}
+        >
+          {">>"}
         </button>
       </div>
       <div className={styles.categories}>
