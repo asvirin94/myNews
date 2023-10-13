@@ -17,7 +17,7 @@
 }
 
 .input:hover, .input:focus {
-    border-color: red;
+    border: 2px solid rgb(143, 0, 0);
 }
 
 .input::placeholder {
