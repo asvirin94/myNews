@@ -6,6 +6,7 @@ export type initialStateType = {
     news: NewsType[];
     areNewsloaded: boolean;
     categories: string[];
+    pagesNumber: number;
     paramsForFetch: {
         selectedCategory: string;
         page_size: number;
@@ -17,6 +18,7 @@ export type initialStateType = {
 const initialState: initialStateType = {
     news: [],
     areNewsloaded: false,
+    pagesNumber: 30,
     categories: ['all', 'world', 'science', 'finance', 'sports', 'celebrity', 'culture'],
     paramsForFetch: {
         selectedCategory: 'all',

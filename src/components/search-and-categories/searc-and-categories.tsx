@@ -14,10 +14,19 @@ export default function SearchAndCategories(): JSX.Element {
 
   const categories = useAppSelector((state) => state.categories);
   const params = useAppSelector((state) => state.paramsForFetch);
+  const pagesNumberCount = useAppSelector((state) => state.pagesNumber);
+  const pageNumbersArr = Array.from({length: pagesNumberCount}, (_, index) => index + 1);
+  const numbersForPag = params.page_number < 4
+    ? pageNumbersArr.slice(0, 5)
+    : params.page_number < 29 
+      ? pageNumbersArr.slice(params.page_number - 3, params.page_number + 2)
+      : pageNumbersArr.slice(25);
+ 
   const className = (category: string) =>
     category === params.selectedCategory
       ? styles.activeCategory
       : styles.category;
+
   const dispatch = useAppDispatch();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +56,10 @@ export default function SearchAndCategories(): JSX.Element {
         >
           {"<"}
         </button>
-        {[1, 2, 3, 4, 5].map((number) => {
+        {numbersForPag.map((number) => {
           return (
             <button
-              className={styles.pagButton}
+              className={`${styles.pagButton} ${params.page_number === number ? styles.activePagButton : ''}`}
               onClick={() => dispatch(setPageNumber(number))}
               disabled={number === params.page_number}
             >
@@ -61,7 +70,7 @@ export default function SearchAndCategories(): JSX.Element {
         <button
           className={styles.pagButton}
           onClick={() => dispatch(incPageNumber())}
-          disabled={5 === params.page_number}
+          disabled={30 === params.page_number}
         >
           {">"}
         </button>
